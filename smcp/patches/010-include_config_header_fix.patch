@@ -1,0 +1,15 @@
+diff --git a/src/smcp/smcp-missing.h b/src/smcp/smcp-missing.h
+index 69b46dc..6930ffb 100644
+--- a/src/smcp/smcp-missing.h
++++ b/src/smcp/smcp-missing.h
+@@ -46,6 +46,10 @@
+ #include <stdio.h>      // For ssize_t
+ #include <string.h>
+ 
++#if HAVE_CONFIG_H
++#include "config.h"
++#endif
++
+ __BEGIN_DECLS
+ 
+ #if !HAVE_CONFIG_H
