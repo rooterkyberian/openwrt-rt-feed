@@ -2,6 +2,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=smcp
 PKG_VERSION:=0.6.5
+PKG_RELEASE:=2
 
 PKG_SOURCE_PROTO:=git
 PKG_SOURCE_URL:=https://github.com/darconeous/smcp.git
@@ -21,7 +22,7 @@ define Package/smcp
   CATEGORY:=Libraries
   TITLE:=lightweight CoAP implementation
   URL:=https://github.com/darconeous/smcp/
-  DEPENDS:=+libpthread +libcurl
+  DEPENDS:=+libpthread +libcurl +IPV6:kmod-ipv6
 endef
 
 define Package/smcp/description
@@ -30,6 +31,10 @@ endef
 
 CONFIGURE_ARGS += \
 				 --disable-readline
+ifneq ($(CONFIG_IPV6),y)
+TARGET_CFLAGS += \
+		  -DSMCP_BSD_SOCKETS_NET_FAMILY=AF_INET
+endif
 
 define Build/InstallDev
 	$(INSTALL_DIR) $(1)/usr/{lib,include}
