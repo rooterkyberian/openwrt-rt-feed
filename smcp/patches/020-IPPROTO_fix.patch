@@ -1,0 +1,26 @@
+diff --git a/src/smcp/smcp-plat-bsd-internal.h b/src/smcp/smcp-plat-bsd-internal.h
+index d9707a1..510f6e2 100644
+--- a/src/smcp/smcp-plat-bsd-internal.h
++++ b/src/smcp/smcp-plat-bsd-internal.h
+@@ -72,7 +72,7 @@
+ #ifdef IP_PKTINFO
+ #define SMCP_PKTINFO IP_PKTINFO
+ #endif
+-#define SMCP_IPPROTO IPPROTO_IPV4
++#define SMCP_IPPROTO IPPROTO_IP
+ 
+ #define SMCP_IS_ADDR_MULTICAST(addrptr) ((*(const uint8_t*)(addrptr)&0xF0)==224)
+ #define SMCP_IS_ADDR_UNSPECIFIED(addrptr) (*(const uint32_t*)(addrptr)==0)
+diff --git a/src/smcp/smcp-plat-bsd.c b/src/smcp/smcp-plat-bsd.c
+index 072a0e8..0be147a 100644
+--- a/src/smcp/smcp-plat-bsd.c
++++ b/src/smcp/smcp-plat-bsd.c
+@@ -280,7 +280,7 @@ smcp_outbound_send_hook() {
+ #elif SMCP_BSD_SOCKETS_NET_FAMILY==AF_INET
+ 		struct in_pktinfo *pktinfo;
+ 		scmsgp = CMSG_FIRSTHDR(&msg);
+-		scmsgp->cmsg_level = IPPROTO_IPV4;
++		scmsgp->cmsg_level = IPPROTO_IP;
+ 		scmsgp->cmsg_type = IP_PKTINFO;
+ 		scmsgp->cmsg_len = CMSG_LEN(sizeof(struct in_pktinfo));
+ 		pktinfo = (struct in_pktinfo *)(CMSG_DATA(scmsgp));
