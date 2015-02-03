@@ -15,5 +15,5 @@ update feed
 
 and install all packages from the feed to make them available in menuconfig
 
-    $ ./scripts/feeds install -p rooterkyberian
+    $ ./scripts/feeds install -a -p rooterkyberian
 
