@@ -3,11 +3,12 @@ env:
   - BUILD_TARGET=x86
   - BUILD_TARGET=ar71xx
 install:
+  - cd $HOME
   - SDK_TARBALL="http://downloads.openwrt.org/barrier_breaker/14.07/${BUILD_TARGET}/generic/OpenWrt-SDK-${BUILD_TARGET}-for-linux-x86_64-gcc-4.8-linaro_uClibc-0.9.33.2.tar.bz2"
   - wget $SDK_TARBALL -O sdk.tar.bz2
   - tar -jxf sdk.tar.bz2
-  - mv -f OpenWrt-SDK-* .openwrt-sdk
-  - cd .openwrt-sdk
+  - mv -f OpenWrt-SDK-* openwrt-sdk
+  - cd openwrt-sdk
   - cp feeds.conf.default feeds.conf
   - echo "src-link custom $TRAVIS_BUILD_DIR" >> feeds.conf
   - ./scripts/feeds update custom
