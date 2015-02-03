@@ -1,6 +1,6 @@
 openwrt-rt-feed
 ===================
-[![Build Status](https://travis-ci.org/rooterkyberian/openwrt-rt-feed.svg?branch=travis)](https://travis-ci.org/rooterkyberian/openwrt-rt-feed)
+[![Build Status](https://travis-ci.org/rooterkyberian/openwrt-rt-feed.svg?branch=master)](https://travis-ci.org/rooterkyberian/openwrt-rt-feed)
 
 OpenWrt packages - mainly for Internet of Things
 
