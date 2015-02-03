@@ -10,10 +10,10 @@ install:
   - cd .openwrt-sdk
   - cp feeds.conf.default feeds.conf
   - echo "src-link custom $TRAVIS_BUILD_DIR" >> feeds.conf
-  - ./scripts/feeds update -a
-  - ./scripts/feeds install -a
+  - ./scripts/feeds update custom
+  - ./scripts/feeds install -p custom
 script:
-  - make package/smcp/prepare
-  - make package/smcp/compile
-  - make package/libcoap/prepare
-  - make package/libcoap/compile
+  - make package/smcp/prepare V=s
+  - make package/smcp/compile V=s
+  - make package/libcoap/prepare V=s
+  - make package/libcoap/compile V=s
