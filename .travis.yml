@@ -17,4 +17,4 @@ install:
   - ./scripts/feeds update custom
   - ./scripts/feeds install -a -p custom
 script:
-  - "for pkg in ${TRAVIS_BUILD_DIR}/*/; do echo package/${${pkg%/}##*/}/{prepare,compile} ; done"
+  - "for pkg in ${TRAVIS_BUILD_DIR}/*/; do echo package/$(basename $pkg)/{prepare,compile} ; done"
