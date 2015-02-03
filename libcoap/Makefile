@@ -35,7 +35,7 @@ CONFIGURE_ARGS+= \
 
 
 define Build/InstallDev
-	$(INSTALL_DIR) $(1)/usr/include/
+	$(INSTALL_DIR) $(1)/usr/include/coap
 	$(INSTALL_BIN) $(PKG_BUILD_DIR)/*.h $(1)/usr/include/coap/
 
 	$(INSTALL_DIR) $(1)/usr/lib
