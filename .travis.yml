@@ -1,0 +1,23 @@
+language: c
+env:
+  - BUILD_TARGET=x86
+  - BUILD_TARGET=ar71xx
+before_install:
+  - sudo apt-get update -qq
+  - sudo apt-get install -y ccache
+install:
+  - cd $HOME
+  - SDK_TARBALL="http://downloads.openwrt.org/barrier_breaker/14.07/${BUILD_TARGET}/generic/OpenWrt-SDK-${BUILD_TARGET}-for-linux-x86_64-gcc-4.8-linaro_uClibc-0.9.33.2.tar.bz2"
+  - wget $SDK_TARBALL -O sdk.tar.bz2
+  - tar -jxf sdk.tar.bz2
+  - mv -f OpenWrt-SDK-* openwrt-sdk
+  - cd openwrt-sdk
+  - cp feeds.conf.default feeds.conf
+  - echo "src-link custom $TRAVIS_BUILD_DIR" >> feeds.conf
+  - ./scripts/feeds update custom
+  - ./scripts/feeds install -a -p custom
+script:
+  - make package/smcp/prepare V=s
+  - make package/smcp/compile V=s
+  - make package/libcoap/prepare V=s
+  - make package/libcoap/compile V=s
